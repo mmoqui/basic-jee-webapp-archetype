@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype>
+  <id>basic-jee-webapp-archetype</id>
+  <sources>
+    <source>src/main/java/util/BeanProvider.java</source>
+    <source>src/main/java/web/RESTApplication.java</source>
+    <source>src/main/webapp/index.html</source>
+    <source>src/main/webapp/WEB-INF/beans.xml</source>
+  </sources>
+  <sourceResources>
+    <resource>src/main/resources/META-INF/persistence.xml</resource>
+  </sourceResources>
+  <testResources>
+    <resource>src/test/resources/arquillian.xml</resource>
+  </testResources>
+</archetype>
