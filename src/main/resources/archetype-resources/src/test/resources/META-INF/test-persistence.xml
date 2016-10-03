@@ -7,8 +7,12 @@
   <persistence-unit name="${artifactId}" transaction-type="JTA">
     <jta-data-source>java:/datasources/${artifactId}</jta-data-source>
     <properties>
+	  <!-- JPA 2.1 properties for database schema generation -->
+      <property name="javax.persistence.schema-generation.scripts.action" value="create"/>
+      <property name="javax.persistence.schema-generation.scripts.create-target"
+                value="${artifactId}-schema.ddl"/>
       <!-- Properties for Hibernate (default provider for Wildfly, must be installed on GlassFish) -->
-      <property name="hibernate.show_sql" value="false"/>
+      <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.format_sql" value="false"/>
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
     </properties>

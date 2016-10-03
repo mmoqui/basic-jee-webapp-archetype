@@ -7,10 +7,18 @@
     <source>src/main/webapp/index.html</source>
     <source>src/main/webapp/WEB-INF/beans.xml</source>
   </sources>
+  <tests>
+    <test>src/test/java/EmptyIT.java</test>
+    <test>src/test/java/test/WarBuilder.java</test>
+  </tests>
   <sourceResources>
     <resource>src/main/resources/META-INF/persistence.xml</resource>
   </sourceResources>
   <testResources>
     <resource>src/test/resources/arquillian.xml</resource>
+    <resource>src/test/resources/test-ds.xml</resource>
+    <resource>src/test/resources/META-INF/test-persistence.xml</resource>
+    <resource>src/test/resources/META-INF/test-MANIFEST.MF</resource>
+    <resource>src/test/resources/META-INF/beans.xml</resource>
   </testResources>
 </archetype>

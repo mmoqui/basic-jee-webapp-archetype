@@ -16,15 +16,16 @@ import java.util.stream.Collectors;
  * A provider of beans managed by CDI. Such a provider is dedicated to be used by non managed
  * beans like for example JPA entities so that they can access the beans managed by CDI in order
  * to delegate some of their business operations.
+ * @author Miguel Moquillon
  */
-public class final BeanProvider {
+public final class BeanProvider {
 
   @SuppressWarnings("unchecked")
   public static <T> T getByName(String beanName) throws IllegalStateException {
     BeanManager beanManager = CDI.current().getBeanManager();
-    Bean<T> bean = beanManager.resolve((Set) beanManager.getBeans(name));
+    Bean<T> bean = beanManager.resolve((Set) beanManager.getBeans(beanName));
     if (bean == null) {
-      throw new IllegalStateException("Cannot find an instance of name " + name);
+      throw new IllegalStateException("Cannot find an instance of name " + beanName);
     }
     CreationalContext<T> ctx = beanManager.createCreationalContext(bean);
     Type type = bean.getTypes().stream().findFirst().get();
@@ -48,11 +49,10 @@ public class final BeanProvider {
   @SuppressWarnings("unchecked")
   public static <T> Set<T> getAllBeansByType(final Class<T> type, Annotation... qualifiers) {
     BeanManager beanManager = CDI.current().getBeanManager();
-    Set<T> refs = beanManager.getBeans(type, qualifiers).stream().map(bean -> {
-          CreationalContext ctx = beanManager.createCreationalContext(bean);
-          return (T) beanManager.getReference(bean, type, ctx);
-        })
+    return beanManager.getBeans(type, qualifiers).stream().map(bean -> {
+      CreationalContext ctx = beanManager.createCreationalContext(bean);
+      return (T) beanManager.getReference(bean, type, ctx);
+    })
         .collect(Collectors.toSet());
-    return refs;
   }
 }
