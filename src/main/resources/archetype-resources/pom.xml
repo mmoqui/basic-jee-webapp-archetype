@@ -113,6 +113,12 @@
   </dependencies>
 
   <build>
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <filtering>true</filtering>
+      </testResource>
+    </testResources>
     <pluginManagement>
       <plugins>
         <plugin>
@@ -189,10 +195,7 @@
             <artifactId>maven-failsafe-plugin</artifactId>
             <configuration>
               <systemPropertyVariables>
-                <java.util.logging.manager>org.jboss.logmanager.LogManager
-                </java.util.logging.manager>
-                <jboss.home>${project.build.directory}/wildfly-${wildfly.version}</jboss.home>
-                <jboss.server.config.file.name>standalone-full.xml</jboss.server.config.file.name>
+                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
               </systemPropertyVariables>
             </configuration>
             <executions>

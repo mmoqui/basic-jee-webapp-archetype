@@ -11,4 +11,4 @@ The integration tests aren't executed by default as they take longer time. They 
 So, to run them, you just have to activate the profile.
 
 In my mind, the unit tests should test only a specific code with all the dependencies mocked whereas the integration tests
-are to test that a whole part works fine.
+are for testing the coupling and the interactions between different and distinct components or layers of the code.
